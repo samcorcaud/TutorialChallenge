@@ -7,8 +7,28 @@ export class ReportView extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {title : ''
+        this.state = {
+            title : '',
+            latitude: null,
+            longitude: null,
+            error: null,
         };
+    }
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+                });
+                console.log(position.coords.latitude)
+                console.log(position.coords.longitude)
+            },
+            (error) => this.setState({ error: error.message }),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+        );
     }
     render() {
         return (
