@@ -34,7 +34,7 @@ export class ReportView extends React.Component {
         return (
             <View style={stylesReport.container}>
                 <View style={stylesReport.header}>
-                    <Text style={stylesReport.textStyle}>cPark challenge</Text>
+                    <Text style={stylesReport.titleStyle}>cPark challenge</Text>
                 </View>
                 <View style={stylesReport.boxStyle}>
                     <Text style={stylesReport.textStyle}>Title</Text>
@@ -83,7 +83,19 @@ const stylesReport = StyleSheet.create({
         top : 0,
         width : '100%',
         backgroundColor: '#1D65A6',
-        alignItems : 'center'
+        alignItems : 'center',
+        textAlign: 'center',
+
+
+    },
+    titleStyle:{
+        fontStyle: 'normal',
+        fontWeight: '400',
+        color: 'white',
+        textAlign: 'center',
+        bottom : 2,
+        position : 'absolute',
+        textStyle: 'bold'
 
     },
     footer:{
@@ -109,13 +121,16 @@ const stylesReport = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         color: 'black',
+        textAlign: 'center',
     },
     textInputStyle:{
         height: 50,
         width: 180,
         borderColor: 'black',
         borderWidth: 2,
-        borderRadius: 5
+        borderRadius: 5,
+        textAlign: 'center',
+
 
     },
     buttonStyle:{
