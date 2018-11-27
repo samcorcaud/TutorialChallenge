@@ -54,7 +54,7 @@ const stylesReport = StyleSheet.create({
     container: {
         flex: 1,
         width : '100%',
-        //backgroundColor: '#72A2C0',
+        backgroundColor: '#C2D3DA',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
@@ -95,7 +95,7 @@ const stylesReport = StyleSheet.create({
     textInputStyle:{
         height: 50,
         width: 180,
-        borderColor: '#1D65A6',
+        borderColor: 'black',
         borderWidth: 2,
         borderRadius: 5
 
@@ -118,7 +118,7 @@ const stylesReport = StyleSheet.create({
         backgroundColor: '#1D65A6',
         alignItems: 'center',
         height: 30,
-        borderColor:'white',
+        //borderColor:'white',
         borderRadius:5,
         borderWidth: 2,
 
@@ -136,7 +136,7 @@ const stylesReport = StyleSheet.create({
         //backgroundColor: '#72A2C0',
         alignItems: 'center',
         height: 30,
-        borderColor:'#1D65A6',
+        borderColor:'black',
         borderRadius:5,
         borderWidth: 2,
     }

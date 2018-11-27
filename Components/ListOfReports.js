@@ -9,6 +9,18 @@ export class ListOfReports extends React.Component {
             <View style={stylesList.container}>
                 <View style={stylesList.header}>
                 </View>
+                <View style={stylesList.positionButton}>
+                    <TouchableOpacity>
+                        <View style={stylesList.touchableButton}>
+                            <Text style={stylesList.textStyle}> Class </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <View style={stylesList.touchableButton2}>
+                            <Text style={stylesList.textStyle}> Class2 </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <View style={stylesList.footer}>
                     <TouchableOpacity style={stylesList.touchablePosition} onPress={this.props.showReports}>
                         <View style={stylesList.touchableButton}>
@@ -27,8 +39,8 @@ const stylesList = StyleSheet.create({
         flex: 1,
         width : '100%',
         //backgroundColor: '#72A2C0',
-        alignItems: 'center',
-        justifyContent: 'center',
+        //alignItems: 'center',
+        //justifyContent: 'center',
     },
     header:{
         position : 'absolute',
@@ -43,7 +55,7 @@ const stylesList = StyleSheet.create({
         height : 45,
         bottom : 0,
         width : '100%',
-        backgroundColor: '#1D65A6',
+        //backgroundColor: '#1D65A6',
         alignItems: 'center'
 
     },
@@ -62,7 +74,9 @@ const stylesList = StyleSheet.create({
     },
     positionButton:{
         position: 'absolute',
-        bottom: 10,
+        top : 100,
+        flexDirection : 'row',
+        marginRight: 50
 
     },
     touchableButton:{
@@ -73,6 +87,18 @@ const stylesList = StyleSheet.create({
         borderColor:'white',
         borderRadius:5,
         borderWidth: 2,
+        //marginRight: 50
+
+    },
+    touchableButton2:{
+        width: 160,
+        backgroundColor: '#72A2C0',
+        alignItems: 'center',
+        height: 30,
+        borderColor:'white',
+        borderRadius:5,
+        borderWidth: 2,
+        marginLeft: 50
 
     },
     touchablePosition:{
