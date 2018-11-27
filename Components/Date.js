@@ -20,19 +20,33 @@ export class Date extends React.Component{
     render(){
         if(Platform.OS==="ios"){
         return(
-            <TouchableOpacity style={stylesDate.dateInput}>
-                <View style={stylesDate.dateTouchableButton}>
-                    <Text style={stylesDate.textStyle}>Send report</Text>
-                </View>
-            </TouchableOpacity>
-            );
-        }else{
-            return(
-                <TouchableOpacity>
+            <View style={{flex : 1}}>
+                <TouchableOpacity onPress={this._showDateTimePicker}>
                     <View style={stylesDate.dateTouchableButton}>
                         <Text style={stylesDate.textStyle}>Choose Date</Text>
                     </View>
                 </TouchableOpacity>
+                <DateTimePicker
+                    isVisible={this.state.isDateTimePickerVisible}
+                    onConfirm={this._handleDatePicked}
+                    onCancel={this._hideDateTimePicker}
+                />
+            </View>
+            );
+        }else{
+            return(
+                <View style={{flex : 1}}>
+                <TouchableOpacity onPress={this._showDateTimePicker}>
+                    <View style={stylesDate.dateTouchableButton}>
+                        <Text style={stylesDate.textStyle}>Choose Date</Text>
+                    </View>
+                </TouchableOpacity>
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible}
+                        onConfirm={this._handleDatePicked}
+                        onCancel={this._hideDateTimePicker}
+                    />
+                </View>
             );
         }
     }

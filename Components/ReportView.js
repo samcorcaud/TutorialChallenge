@@ -7,8 +7,7 @@ export class ReportView extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {title : '',
-                        date : ''
+        this.state = {title : ''
         };
     }
     render() {
