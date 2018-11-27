@@ -76,8 +76,7 @@ const stylesList = StyleSheet.create({
         position: 'absolute',
         top : 100,
         flexDirection : 'row',
-        marginRight: 50
-
+        marginLeft: 25,
     },
     touchableButton:{
         width: 160,
@@ -98,7 +97,7 @@ const stylesList = StyleSheet.create({
         borderColor:'white',
         borderRadius:5,
         borderWidth: 2,
-        marginLeft: 50
+        marginRight: 30
 
     },
     touchablePosition:{

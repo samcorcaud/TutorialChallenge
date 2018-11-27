@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
-import {LinearGradient} from 'expo'
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
+import {LinearGradient} from 'expo';
+import {Date} from "./Date";
 
 export class ReportView extends React.Component {
 
@@ -23,9 +24,7 @@ export class ReportView extends React.Component {
                                 onChangeText={(title) => this.setState({title})}
                                 value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
-                    <TextInput style={stylesReport.textInputStyle}
-                           onChangeText={(date) => this.setState({date})}
-                           value={this.state.date}/>
+                    <Date/>
                     <View style={stylesReport.sendTouchable}>
                         <TouchableOpacity>
                             <View style={stylesReport.sendTouchableButton}>
