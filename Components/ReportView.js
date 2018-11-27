@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
 import {LinearGradient} from 'expo';
-import {Date} from "./Date";
+import {DatePicker} from "./DatePicker";
 
 export class ReportView extends React.Component {
 
@@ -43,7 +43,7 @@ export class ReportView extends React.Component {
                                 onChangeText={(title) => this.setState({title})}
                                 value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
-                    <Date/>
+                    <DatePicker/>
                     <View style={stylesReport.sendTouchable}>
                         <TouchableOpacity>
                             <View style={stylesReport.sendTouchableButton}>

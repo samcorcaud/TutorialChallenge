@@ -2,19 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
-export class Date extends React.Component{
+export class DatePicker extends React.Component{
 
     state = {
         isDateTimePickerVisible: false,
+        dateTime: new Date()
     };
 
     _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
-    _handleDatePicked = (date) => {
-        console.log('A date has been picked: ', date);
+    _handleDatetimePicked = (datetime) => {
+        console.log('A date has been picked: ', datetime);
         this._hideDateTimePicker();
+        this.setState({dateTime: datetime});
     };
 
     render(){
@@ -23,12 +25,12 @@ export class Date extends React.Component{
             <View style={{flex : 1}}>
                 <TouchableOpacity onPress={this._showDateTimePicker}>
                     <View style={stylesDate.dateTouchableButton}>
-                        <Text style={stylesDate.textStyle}>Choose Date</Text>
+                        <Text style={stylesDate.textStyle}>{JSON.stringify(this.state.dateTime)}</Text>
                     </View>
                 </TouchableOpacity>
                 <DateTimePicker
                     isVisible={this.state.isDateTimePickerVisible}
-                    onConfirm={this._handleDatePicked}
+                    onConfirm={this._handleDatetimePicked}
                     onCancel={this._hideDateTimePicker}
                 />
             </View>
@@ -38,12 +40,13 @@ export class Date extends React.Component{
                 <View style={{flex : 1}}>
                 <TouchableOpacity onPress={this._showDateTimePicker}>
                     <View style={stylesDate.dateTouchableButton}>
-                        <Text style={stylesDate.textStyle}>Choose Date</Text>
+                        <Text style={stylesDate.textStyle}>
+                            {this.state.dateTime.toDateString()+ "\n"+ this.state.dateTime.toLocaleTimeString()}</Text>
                     </View>
                 </TouchableOpacity>
                     <DateTimePicker
                         isVisible={this.state.isDateTimePickerVisible}
-                        onConfirm={this._handleDatePicked}
+                        onConfirm={this._handleDatetimePicked}
                         onCancel={this._hideDateTimePicker}
                     />
                 </View>
@@ -79,5 +82,6 @@ const stylesDate = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: '400',
         color: 'black',
+        textAlign: 'center'
     },
 });
