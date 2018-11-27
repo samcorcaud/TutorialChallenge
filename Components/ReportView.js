@@ -6,7 +6,9 @@ export class ReportView extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {text : ''};
+        this.state = {title : '',
+                        date : ''
+        };
     }
     render() {
         return (
@@ -18,12 +20,12 @@ export class ReportView extends React.Component {
                     <Text style={stylesReport.textStyle}>Title</Text>
                     <TextInput style={stylesReport.textInputStyle}
                                placeholder="Lysandre"
-                                onChangeText={(text) => this.setState({text})}
-                                value={this.state.text}/>
+                                onChangeText={(title) => this.setState({title})}
+                                value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
                     <TextInput style={stylesReport.textInputStyle}
-                           onChangeText={(text) => this.setState({text})}
-                           value={this.state.text}/>
+                           onChangeText={(date) => this.setState({date})}
+                           value={this.state.date}/>
                     <View style={stylesReport.sendTouchable}>
                         <TouchableOpacity>
                             <View style={stylesReport.sendTouchableButton}>
