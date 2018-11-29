@@ -3,11 +3,12 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "start": "expo start",
+    "start-rn": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "dev": "expo start && cd backend && node Node.js"
+    "dev": "expo start && cd backend && node Node.js",
+    "start": "cd backend && node Node.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
