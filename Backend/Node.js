@@ -4,21 +4,33 @@ import {ListOfReports} from "../Components/ListOfReports";
 // Creation of the server
 
 var express = require('express');
+var cors = require('cors');
 var app = express();
+var bodyParser = require('bpdy-parser');
 
-app.get('/', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.send('Bienvenue');
+app.use(cors());
+
+app.use(bodyParser());
+
+let data = "";
+
+app.post('/report', function (req, res) {
+    data = req.body;
+    console.log(data);
+    res.send({message : 'Succeessfully pposted data'});
 });
-app.get('/report', function(req, res) {
+
+app.get('/report/:lat/:long', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');
     res.send(str);
     console.log(str);
 });
+
 app.use(function(req, res, next){
     res.setHeader('Content-Type', 'text/plain');
     res.status(404).send('Page introuvable !');
 });
+
 app.listen(27017);
 
 // Base de données
@@ -37,7 +49,7 @@ MongoClient.connect(url, function(error, db){
     db.collection("personnages").find({}).toArray(function(error, results){
 
         if (error) throw error;
-        //console.log(results);
+        console.log(results);
         str = results;
         //console.log(str);
         db.close();
@@ -54,4 +66,4 @@ results.forEach(function(i, obj){
     );
 });*/
 //"23/11/2018 23:28"
-
+//db.personnages.insert( { title: string, time: "Half-Life" , position : coordinates} );
