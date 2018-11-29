@@ -14,17 +14,18 @@ app.use(bodyParser());
 
 let data = "";
 
+app.get('/report/:lat/:long', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.send(str);
+    console.log(str);
+});
+
 app.post('/report', function (req, res) {
     data = req.body;
     console.log(data);
     res.send({message : 'Succeessfully pposted data'});
 });
 
-app.get('/report/:lat/:long', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.send(str);
-    console.log(str);
-});
 
 app.use(function(req, res, next){
     res.setHeader('Content-Type', 'text/plain');

@@ -1,10 +1,23 @@
 
-export class API{
+export default class API{
 
     static async getData(){
-        let data = "";
-        let url = "mongodb://localhost:27017/review";
+        let url = "mongodb://localhost:27017/report/:lat/:long";
 
-        await fetch
+        return await fetch(url)
+            .then((dataFromServer) => dataFromServer.json())
+
+    }
+
+    static async postData(data){
+        let url = "mongodb://localhost:27017/report"
+        return await fetch(url, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).then((dataFromServer) => dataFromServer.json())
     }
 }
