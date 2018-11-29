@@ -30,4 +30,4 @@ app.use((req, res, next) => {
 	res.status(404).send('Page introuvable !');
 });
 
-app.listen(28017);
+app.listen(process.env.PORT || 5000, () => console.log('Sucessfully started app on port ', process.env.PORT || 5000));
