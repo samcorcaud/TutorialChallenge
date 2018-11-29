@@ -29,8 +29,7 @@ export class ListOfReports extends React.Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        );
-    }
+                    )}
 }
 
 const stylesList = StyleSheet.create({

@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
 import {LinearGradient} from 'expo';
 import {DatePicker} from "./DatePicker";
+import {API} from '../Backend/API';
+
 
 export class ReportView extends React.Component {
 
@@ -39,13 +41,21 @@ export class ReportView extends React.Component {
                 <View style={stylesReport.boxStyle}>
                     <Text style={stylesReport.textStyle}>Title</Text>
                     <TextInput style={stylesReport.textInputStyle}
-                               placeholder="Lysandre"
+                               placeholder="Title"
                                 onChangeText={(title) => this.setState({title})}
                                 value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
                     <DatePicker/>
                     <View style={stylesReport.sendTouchable}>
-                        <TouchableOpacity>
+                        <TouchableOpacity  onPress={() => {
+                            API.postData({
+                                position : {
+                                    lat: this.state.latitude,
+                                    long: this.state.longitude
+                                },
+                                title:this.state.title,
+                            })
+                        }}>
                             <View style={stylesReport.sendTouchableButton}>
                                 <Text style={stylesReport.textStyle}>Send report</Text>
                             </View>
@@ -90,12 +100,13 @@ const stylesReport = StyleSheet.create({
     },
     titleStyle:{
         fontStyle: 'normal',
-        fontWeight: '400',
+        fontSize : 18,
+        fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
         bottom : 2,
         position : 'absolute',
-        textStyle: 'bold'
+
 
     },
     footer:{
