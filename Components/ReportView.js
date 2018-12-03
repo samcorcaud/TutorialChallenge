@@ -45,7 +45,7 @@ export class ReportView extends React.Component {
                                 onChangeText={(title) => this.setState({title})}
                                 value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
-                    <DatePicker/>
+                    <DatePicker date={this.dateTime}/>
                     <View style={stylesReport.sendTouchable}>
                         <TouchableOpacity  onPress={() => {
                             API.postData({
@@ -54,6 +54,7 @@ export class ReportView extends React.Component {
                                     long: this.state.longitude
                                 },
                                 title:this.state.title,
+                                //datetime: this.state.dateTime
                             })
                         }}>
                             <View style={stylesReport.sendTouchableButton}>
@@ -62,9 +63,6 @@ export class ReportView extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-             {/*<View style={stylesReport.positionButton}>
-                <Button title={"List of reports"} style={stylesReport.buttonStyle} onPress={this.props.showList} color={"#6A8A82"}/>
-                </View>*/}
                 <View style={stylesReport.footer}>
                     <TouchableOpacity style={stylesReport.touchablePosition} onPress={this.props.showList}>
                         <View style={stylesReport.touchableButton}>
