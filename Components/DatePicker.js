@@ -16,6 +16,7 @@ export class DatePicker extends React.Component{
     _handleDatetimePicked = (datetime) => {
         console.log('A date has been picked: ', datetime);
         this._hideDateTimePicker();
+        this.props.setDate(datetime);
         this.setState({dateTime: datetime});
     };
 

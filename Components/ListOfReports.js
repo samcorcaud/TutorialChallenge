@@ -1,31 +1,54 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, ScrollView } from 'react-native';
 import {B} from 'expo';
 import { API } from '../Backend/API';
 
 
 export class ListOfReports extends React.Component {
+
+    state = {reports: []};
+
     render() {
         return (
             <View style={stylesList.container}>
                 <View style={stylesList.header}>
+                    <Text style={stylesList.titleStyle}>cPark challenge</Text>
                 </View>
                 <View style={stylesList.positionButton}>
                     <TouchableOpacity onPress={() =>{
-                        API.getData({
-
-                        })
+                        API.getData().then((reports) => this.setState({reports}));
                     }}>
                         <View style={stylesList.touchableButton}>
                             <Text style={stylesList.textStyle}> Class </Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    {/*<TouchableOpacity>
                         <View style={stylesList.touchableButton2}>
                             <Text style={stylesList.textStyle}> Class2 </Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
                 </View>
+
+
+                <ScrollView style={{backgroundColor: 'red', height: '50%', width: '90%', position : 'absolute'}}>
+
+
+                    <View>{this.state.reports.length ?
+                        this.state.reports.map((report, key) => {
+                            return <ReportText
+                                title={report.title}
+                                longitude={report.longitude}
+                                latitude={report.latitude}
+                                date={report.date}
+                                key={key}
+                            />
+                        })
+
+                        : <Text>"No reports yet !"</Text>}</View>
+                </ScrollView>
+
+
+
                 <View style={stylesList.footer}>
                     <TouchableOpacity style={stylesList.touchablePosition} onPress={this.props.showReports}>
                         <View style={stylesList.touchableButton}>
@@ -37,14 +60,24 @@ export class ListOfReports extends React.Component {
                     )}
 }
 
+const ReportText = ({title, longitude, latitude, date}) =>
+    <View style={{marginBottom: 20}}>
+        <Text>{"Title : " + title}</Text>
+        <Text>{"longitude : " + longitude}</Text>
+        <Text>{"latitude : " + latitude}</Text>
+        <Text>{"date : " + date}</Text>
+    </View>
+
+
 const stylesList = StyleSheet.create({
 
     container:{
         flex: 1,
         width : '100%',
         //backgroundColor: '#72A2C0',
-        //alignItems: 'center',
-        //justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center'
     },
     header:{
         position : 'absolute',
@@ -52,6 +85,8 @@ const stylesList = StyleSheet.create({
         top : 0,
         width : '100%',
         backgroundColor: '#1D65A6',
+        alignItems : 'center',
+        textAlign: 'center',
 
     },
     footer:{
@@ -80,7 +115,8 @@ const stylesList = StyleSheet.create({
         position: 'absolute',
         top : 100,
         flexDirection : 'row',
-        marginLeft: 25,
+        marginLeft: 100,
+        //justifyContent: 'center'
     },
     touchableButton:{
         width: 160,
@@ -104,6 +140,18 @@ const stylesList = StyleSheet.create({
         marginRight: 30
 
     },
+    titleStyle:{
+        fontStyle: 'normal',
+        fontSize : 18,
+        fontWeight: 'bold',
+        color: 'white',
+        textAlign: 'center',
+        bottom : 2,
+        position : 'absolute',
+
+
+    },
+
     touchablePosition:{
         position:'absolute',
         bottom: 10

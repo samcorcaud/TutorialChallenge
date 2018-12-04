@@ -1,11 +1,10 @@
 
 export class API {
-	static async getData(data) {
+	static async 	getData() {
 		const url = 'http://cparkchallenge.herokuapp.com/report/:lat/:long';
 
 		return await fetch(url)
-			.then(dataFromServer => dataFromServer.json());
-		//.then(dataFromServer => JSON.stringify(dataFromServer));
+			.then(dataFromServer => dataFromServer.json())
 	}
 
 	static async postData(data) {

@@ -22,18 +22,30 @@ let data = '';
 
 app.get('/report/:lat/:long', (req, res) => {
     console.log('Requested list of report');
+    data = req.body;
 
     let MongoClient = mongodb.MongoClient;
 
     let url = 'mongodb://samcor:cparkchallenge2018@ds119663.mlab.com:19663/cparkchallengetest';
-
 
     MongoClient.connect(url, {useNewUrlParser: true}, (err, db)=>{
         let dbo = db.db('cparkchallengetest');
         if (err) {
             console.log('Impossible de récupérer les infos', err);
         }else {
-            console.log('Connection établie');
+            console.log('Connection established');
+            var collection = dbo.collection('report');
+            collection.find({}).toArray(function(err, results){
+               if(err){
+                   res.send('Error detected', err);
+                   console.log('Error detected', err);
+               }else{
+                   console.log('Near the results')
+                   res.json(results);
+                   console.log('Succcess for getting report', results)
+               }
+            });
+            console.log('Connection etablished');
         }
 
 
@@ -60,23 +72,20 @@ app.post('/report', (req, res) => {
             console.log('Connection established');
             var collection = dbo.collection('report');
             console.log('In collection report');
-            var report1 = {title : req.body.title, longitude: req.body.position.long, latitude: req.body.position.lat};
+            var report1 = {title : req.body.title, longitude: req.body.position.long, latitude: req.body.position.lat, date: req.body.dateTime};
             console.log(report1);
-            var report2 = {position : req.body.position.long};
-            console.log(report2);
 
             collection.insertMany([report1], null, function (err, result) {
                 if(err){
-                    console.log('Unabled to add this to the collection', err);
+                    console.log('Unable to add this to the collection', err);
                 }else{
                     console.log('Ajouté à la collection');
-                    res.redirect('thereport');
                 }
-                dbo.close();
+                db.close();
             });
         }
     });
-	res.send({ message: 'Succeessfully posted data' });
+	res.send({ message: 'Successfully posted data' });
 
     //res.send(console.log(data));
     /* MongoClient.connect(url, {useNewUrlParser: true}, {usePushEach: true}, (error, db)=>{

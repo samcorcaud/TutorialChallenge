@@ -8,7 +8,7 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {currentPage : "RapportView"};
+    this.state = {currentPage : "List"};
     this.showList = this.showList.bind(this);
     this.showReports = this.showReports.bind(this);
   }

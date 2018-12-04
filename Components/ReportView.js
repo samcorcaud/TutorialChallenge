@@ -14,8 +14,15 @@ export class ReportView extends React.Component {
             latitude: null,
             longitude: null,
             error: null,
-            date: null,
+            date: new Date(),
         };
+
+        this.setTime = this.setTime.bind(this);
+    }
+
+    setTime(time){
+        console.log('Time has been changed in parent to', time);
+        this.setState({date: time});
     }
 
     componentDidMount() {
@@ -46,7 +53,7 @@ export class ReportView extends React.Component {
                                 onChangeText={(title) => this.setState({title})}
                                 value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
-                    <DatePicker date={this.dateTime}/>
+                    <DatePicker setDate={this.setTime}/>
                     <View style={stylesReport.sendTouchable}>
                         <TouchableOpacity  onPress={() => {
                             API.postData({
@@ -55,7 +62,7 @@ export class ReportView extends React.Component {
                                     long: this.state.longitude
                                 },
                                 title:this.state.title,
-                                datetime: this.state.dateTime
+                                dateTime: this.state.date
                             })
                         }}>
                             <View style={stylesReport.sendTouchableButton}>
