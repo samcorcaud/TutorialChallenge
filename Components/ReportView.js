@@ -74,7 +74,7 @@ export class ReportView extends React.Component {
                 <View style={stylesReport.footer}>
                     <TouchableOpacity style={stylesReport.touchablePosition} onPress={this.props.showList}>
                         <View style={stylesReport.touchableButton}>
-                            <Text style={stylesReport.textStyle}>Lists of reports</Text>
+                            <Text style={stylesReport.textStyleList}>Lists of reports</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -140,6 +140,12 @@ const stylesReport = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
     },
+    textStyleList:{
+        fontStyle: 'normal',
+        fontWeight: '400',
+        color: 'white',
+        textAlign: 'center',
+    },
     textInputStyle:{
         height: 50,
         width: 180,
@@ -168,7 +174,7 @@ const stylesReport = StyleSheet.create({
         backgroundColor: '#1D65A6',
         alignItems: 'center',
         height: 30,
-        //borderColor:'white',
+        borderColor:'white',
         borderRadius:5,
         borderWidth: 2,
 
