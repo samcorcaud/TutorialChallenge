@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import {B} from 'expo';
+import { API } from '../Backend/API';
 
 
 export class ListOfReports extends React.Component {
@@ -10,7 +11,11 @@ export class ListOfReports extends React.Component {
                 <View style={stylesList.header}>
                 </View>
                 <View style={stylesList.positionButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() =>{
+                        API.getData({
+
+                        })
+                    }}>
                         <View style={stylesList.touchableButton}>
                             <Text style={stylesList.textStyle}> Class </Text>
                         </View>

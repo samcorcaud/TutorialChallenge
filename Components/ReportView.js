@@ -14,6 +14,7 @@ export class ReportView extends React.Component {
             latitude: null,
             longitude: null,
             error: null,
+            date: null,
         };
     }
 
@@ -54,7 +55,7 @@ export class ReportView extends React.Component {
                                     long: this.state.longitude
                                 },
                                 title:this.state.title,
-                                //datetime: this.state.dateTime
+                                datetime: this.state.dateTime
                             })
                         }}>
                             <View style={stylesReport.sendTouchableButton}>
