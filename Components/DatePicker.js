@@ -1,8 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    TextInput,
+    TouchableOpacity,
+    Platform
+} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
-export class DatePicker extends React.Component{
+/**
+ * This class uses a library that exposes a cross-platform interface for showing
+ * the native date-picker and time-picker inside a modal.
+ * This component allows the user to select the date of the report.
+ */
+export class DatePicker extends React.Component {
 
     state = {
         isDateTimePickerVisible: false,
@@ -17,34 +30,35 @@ export class DatePicker extends React.Component{
         console.log('A date has been picked: ', datetime);
         this._hideDateTimePicker();
         this.props.setDate(datetime);
-        this.setState({dateTime: datetime});
+        this.setState({ dateTime: datetime });
     };
 
-    render(){
-        if(Platform.OS==="ios"){
-        return(
-            <View style={{flex : 1}}>
-                <TouchableOpacity onPress={this._showDateTimePicker}>
-                    <View style={stylesDate.dateTouchableButton}>
-                        <Text style={stylesDate.textStyle}>{JSON.stringify(this.state.dateTime)}</Text>
-                    </View>
-                </TouchableOpacity>
-                <DateTimePicker
-                    isVisible={this.state.isDateTimePickerVisible}
-                    onConfirm={this._handleDatetimePicked}
-                    onCancel={this._hideDateTimePicker}
-                />
-            </View>
+    render() {
+        if (Platform.OS === 'ios') {
+            return (
+                <View style={{ flex: 1 }}>
+                    <TouchableOpacity onPress={this._showDateTimePicker}>
+                        <View style={stylesDate.dateTouchableButton}>
+                            <Text
+                                style={stylesDate.textStyle}>{JSON.stringify(this.state.dateTime)}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible}
+                        onConfirm={this._handleDatetimePicked}
+                        onCancel={this._hideDateTimePicker}
+                    />
+                </View>
             );
-        }else{
-            return(
-                <View style={{flex : 1}}>
-                <TouchableOpacity onPress={this._showDateTimePicker}>
-                    <View style={stylesDate.dateTouchableButton}>
-                        <Text style={stylesDate.textStyle}>
-                            {this.state.dateTime.toDateString()+ "\n"+ this.state.dateTime.toLocaleTimeString()}</Text>
-                    </View>
-                </TouchableOpacity>
+        } else {
+            return (
+                <View style={{ flex: 1 }}>
+                    <TouchableOpacity onPress={this._showDateTimePicker}>
+                        <View style={stylesDate.dateTouchableButton}>
+                            <Text style={stylesDate.textStyle}>
+                                {this.state.dateTime.toDateString() + '\n' + this.state.dateTime.toLocaleTimeString()}</Text>
+                        </View>
+                    </TouchableOpacity>
                     <DateTimePicker
                         isVisible={this.state.isDateTimePickerVisible}
                         onConfirm={this._handleDatetimePicked}
@@ -57,29 +71,29 @@ export class DatePicker extends React.Component{
 }
 
 const stylesDate = StyleSheet.create({
-    dateInput:{
+    dateInput: {
         height: 50,
         width: 250,
         borderColor: 'black',
         borderWidth: 2,
         borderRadius: 5
     },
-    dateTouchableButton:{
+    dateTouchableButton: {
         width: 180,
         //backgroundColor: '#1D65A6',
         alignItems: 'center',
         height: 60,
         justifyContent: 'center',
         //borderColor:'white',
-        borderRadius:5,
+        borderRadius: 5,
         borderWidth: 2,
 
     },
-    touchablePosition:{
-        position:'absolute',
+    touchablePosition: {
+        position: 'absolute',
         bottom: 10
     },
-    textStyle:{
+    textStyle: {
         fontStyle: 'normal',
         fontWeight: '400',
         color: 'black',

@@ -1,16 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Platform } from 'react-native';
-import {LinearGradient} from 'expo';
-import {DatePicker} from "./DatePicker";
-import {API} from '../Backend/API';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { DatePicker } from './DatePicker';
+import { API } from '../Backend/API';
 
-
+/**
+ * The ReportView class display the "ReportView" screen on wich the user can send report.
+ * This class set and stock the state of the different variables.
+ * It manages everything there is to manage concerning this part of the application.
+ */
 export class ReportView extends React.Component {
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            title : '',
+            title: '',
             latitude: null,
             longitude: null,
             error: null,
@@ -20,11 +22,18 @@ export class ReportView extends React.Component {
         this.setTime = this.setTime.bind(this);
     }
 
-    setTime(time){
+    /**
+     * Set the state of the time variable on the current date.
+     * @param time, time of the device.
+     */
+    setTime(time) {
         console.log('Time has been changed in parent to', time);
-        this.setState({date: time});
+        this.setState({ date: time });
     }
 
+    /**
+     * Retrieves the current position of the phone before other functions via "componentDidMount()" function.
+     */
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -33,13 +42,18 @@ export class ReportView extends React.Component {
                     longitude: position.coords.longitude,
                     error: null,
                 });
-                console.log(position.coords.latitude)
-                console.log(position.coords.longitude)
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
             },
             (error) => this.setState({ error: error.message }),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+            {
+                enableHighAccuracy: true,
+                timeout: 20000,
+                maximumAge: 1000
+            },
         );
     }
+
     render() {
         return (
             <View style={stylesReport.container}>
@@ -50,20 +64,20 @@ export class ReportView extends React.Component {
                     <Text style={stylesReport.textStyle}>Title</Text>
                     <TextInput style={stylesReport.textInputStyle}
                                placeholder="Title"
-                                onChangeText={(title) => this.setState({title})}
-                                value={this.state.title}/>
+                               onChangeText={(title) => this.setState({ title })}
+                               value={this.state.title}/>
                     <Text style={stylesReport.textStyle}>Date</Text>
                     <DatePicker setDate={this.setTime}/>
                     <View style={stylesReport.sendTouchable}>
-                        <TouchableOpacity  onPress={() => {
+                        <TouchableOpacity onPress={() => {
                             API.postData({
-                                position : {
+                                position: {
                                     lat: this.state.latitude,
                                     long: this.state.longitude
                                 },
-                                title:this.state.title,
+                                title: this.state.title,
                                 dateTime: this.state.date
-                            })
+                            });
                         }}>
                             <View style={stylesReport.sendTouchableButton}>
                                 <Text style={stylesReport.textStyle}>Send report</Text>
@@ -72,7 +86,8 @@ export class ReportView extends React.Component {
                     </View>
                 </View>
                 <View style={stylesReport.footer}>
-                    <TouchableOpacity style={stylesReport.touchablePosition} onPress={this.props.showList}>
+                    <TouchableOpacity style={stylesReport.touchablePosition}
+                                      onPress={this.props.showList}>
                         <View style={stylesReport.touchableButton}>
                             <Text style={stylesReport.textStyleList}>Lists of reports</Text>
                         </View>
@@ -87,66 +102,66 @@ export class ReportView extends React.Component {
 const stylesReport = StyleSheet.create({
     container: {
         flex: 1,
-        width : '100%',
+        width: '100%',
         backgroundColor: '#C2D3DA',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
     },
-    header:{
-        position : 'absolute',
-        height : 75,
-        top : 0,
-        width : '100%',
+    header: {
+        position: 'absolute',
+        height: 75,
+        top: 0,
+        width: '100%',
         backgroundColor: '#1D65A6',
-        alignItems : 'center',
+        alignItems: 'center',
         textAlign: 'center',
 
 
     },
-    titleStyle:{
+    titleStyle: {
         fontStyle: 'normal',
-        fontSize : 18,
+        fontSize: 18,
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
-        bottom : 2,
-        position : 'absolute',
+        bottom: 2,
+        position: 'absolute',
 
 
     },
-    footer:{
-        position : 'absolute',
-        height : 45,
-        bottom : 0,
-        width : '100%',
+    footer: {
+        position: 'absolute',
+        height: 45,
+        bottom: 0,
+        width: '100%',
         //backgroundColor: '#1D65A6',
         alignItems: 'center'
 
     },
-    boxStyle:{
-      borderRadius : 5,
-      borderWidth : 2,
-      //margin: 10,
-      borderColor : 'black',
-      height : 200,
-      width : '80%',
-        alignItems : 'center'
+    boxStyle: {
+        borderRadius: 5,
+        borderWidth: 2,
+        //margin: 10,
+        borderColor: 'black',
+        height: 200,
+        width: '80%',
+        alignItems: 'center'
 
     },
-    textStyle:{
+    textStyle: {
         fontStyle: 'normal',
         fontWeight: '400',
         color: 'black',
         textAlign: 'center',
     },
-    textStyleList:{
+    textStyleList: {
         fontStyle: 'normal',
         fontWeight: '400',
         color: 'white',
         textAlign: 'center',
     },
-    textInputStyle:{
+    textInputStyle: {
         height: 50,
         width: 180,
         borderColor: 'black',
@@ -156,44 +171,44 @@ const stylesReport = StyleSheet.create({
 
 
     },
-    buttonStyle:{
+    buttonStyle: {
         position: 'absolute',
         bottom: 0,
-        width : "80%",
-        color: "#F18904",
+        width: '80%',
+        color: '#F18904',
 
 
     },
-    positionButton:{
+    positionButton: {
         position: 'absolute',
         bottom: 10,
 
     },
-    touchableButton:{
+    touchableButton: {
         width: 160,
         backgroundColor: '#1D65A6',
         alignItems: 'center',
         height: 30,
-        borderColor:'white',
-        borderRadius:5,
+        borderColor: 'white',
+        borderRadius: 5,
         borderWidth: 2,
 
     },
-    touchablePosition:{
-        position:'absolute',
+    touchablePosition: {
+        position: 'absolute',
         bottom: 10
     },
-    sendTouchable:{
-        position:'absolute',
+    sendTouchable: {
+        position: 'absolute',
         bottom: 10
     },
-    sendTouchableButton:{
+    sendTouchableButton: {
         width: 160,
         //backgroundColor: '#72A2C0',
         alignItems: 'center',
         height: 30,
-        borderColor:'black',
-        borderRadius:5,
+        borderColor: 'black',
+        borderRadius: 5,
         borderWidth: 2,
     }
 });
