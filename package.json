@@ -1,5 +1,5 @@
 {
-  "name": "empty-project-template",
+  "name": "cparkchallenge",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
@@ -7,27 +7,19 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "dev": "expo start && cd backend && node Node.js"
+    "test": "node ./node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
     "expo": "^31.0.2",
-    "express": "^4.16.4",
-    "mongodb": "^3.1.10",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
-    "react-native-elements": "^1.0.0-beta7",
     "react-native-modal-datetime-picker": "^6.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
-    "eslint": "^5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "jest-expo": "^31.0.0"
   }
 }

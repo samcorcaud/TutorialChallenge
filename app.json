@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "cParkChallenge",
+    "name": "cParkChallengeFinal",
     "description": "This project is really great.",
-    "slug": "cParkChallenge",
+    "slug": "cParkChallengeFinal",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],

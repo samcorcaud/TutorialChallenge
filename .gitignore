@@ -6,4 +6,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 
-/backend/.git
+Backend/node_modules
+/.idea
