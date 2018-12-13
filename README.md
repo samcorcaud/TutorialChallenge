@@ -1,7 +1,6 @@
-# cParkChallenge
+# TutorialChallenge
 ## *Introduction*
-This project is a challenge proposed by the company cPark. The challenge was to create an application to send and consult 
-reports via a Fetch API, a Node.js server and a mongoDb database.
+The challenge was to create an application to send and consult reports via a Fetch API, a Node.js server and a mongoDb database.
 ## *Installation*
 1. Pull the project
 2. Yarn command in your local project shell to initialize the package manager
